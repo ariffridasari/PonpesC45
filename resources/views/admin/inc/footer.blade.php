@@ -5,6 +5,11 @@
             <a class="text-primary" href="#" target="_blank">Arif Frida</a>.
         </p>
     </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+  
+
 
     <script src="{{ URL::asset('admin/assets/plugins/jquery/jquery.min.js')}}"></script>
     <script src="{{ URL::asset('admin/assets/plugins/slimscrollbar/jquery.slimscroll.min.js')}}"></script>

@@ -57,22 +57,22 @@
                                                 <input type="text" class="form-control" id="soal"
                                                     value="{{ $soal->soal}}" readonly>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="a">Jawaban</label>
-                                                @foreach ($jawaban as $jwb)
-                                                <div class="input-group">
-                                                    <div class="input-group-append">
-                                                        <span class="input-group-text">{{ $jwb->value}}</span>
-                                                    </div>
-                                                    <input type="text" class="form-control" id="a" value="{{ $jwb->jawaban}} " readonly><br/>
-                                                    <div class="input-group-append">
-                                                        @if ($jwb->kunci == 1)
-                                                        <span class="input-group-text"><i class="mdi mdi-check-circle"></i></span>  
-                                                        @endif                                                    
-                                                    </div>
-                                                  </div>
-                                                @endforeach
-                                            </div>  
+                                            {{-- <div class="form-group"> --}}
+                                                {{-- <label for="a">Jawaban</label> --}}
+                                                {{-- @foreach ($jawaban as $jwb) --}}
+                                                {{-- <div class="input-group"> --}}
+                                                    {{-- <div class="input-group-append"> --}}
+                                                        {{-- <span class="input-group-text">{{ $jwb->value}}</span> --}}
+                                                    {{-- </div> --}}
+                                                    {{-- <input type="text" class="form-control" id="a" value="{{ $jwb->jawaban}} " readonly><br/> --}}
+                                                    {{-- <div class="input-group-append"> --}}
+                                                        {{-- @if ($jwb->kunci == 1) --}}
+                                                        {{-- <span class="input-group-text"><i class="mdi mdi-check-circle"></i></span>   --}}
+                                                        {{-- @endif                                                     --}}
+                                                    {{-- </div> --}}
+                                                  {{-- </div> --}}
+                                                {{-- @endforeach --}}
+                                            {{-- </div>   --}}
 
 
                                             {{-- <button type="submit" class="btn btn-primary">Submit</button> --}}

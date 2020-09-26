@@ -23,6 +23,8 @@
     
     <!-- No Extra plugin used -->
 
+    
+
     <link href="{{ URL::asset('admin/assets/plugins/jvectormap/jquery-jvectormap-2.0.3.css')}}" rel="stylesheet" />
 
     <link href="{{ URL::asset('admin/assets/plugins/daterangepicker/daterangepicker.css')}}" rel="stylesheet" />
@@ -48,4 +50,5 @@
     <script src="{{ URL::asset('https://oss.maxcdn.com/respond/1.4.2/respond.min.js') }}"></script>
   <![endif]-->
     <script src="{{ URL::asset('admin/assets/plugins/nprogress/nprogress.js') }}"></script>
-</head>
+
+  </head>

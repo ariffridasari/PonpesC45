@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 @include('admin.inc.head')
+
 <body class="header-fixed sidebar-fixed sidebar-dark header-light" id="body">
 
     <script>
@@ -10,7 +11,6 @@
 
 
     <div id="toaster"></div>
-
 
     <div class="wrapper">
         <!-- Github Link -->

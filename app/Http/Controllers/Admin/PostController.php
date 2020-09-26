@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin\Post;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PostController extends Controller
 {
@@ -15,18 +16,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts =Post::all();
-        return view('admin.siswa.index')->with('posts',$posts);
-    }
+        $posts = Post::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('admin.siswa.index', ['posts' => $posts]);
     }
 
     /**
@@ -37,19 +29,31 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'nomorPendaftaran'=>'required',
-            'namaPeserta'=>'required',
-            'alamatPeserta'=>'required'
+        $request->validate([
+          'nomor'=>'required',
+            'nama'=>'required',
+            'alamat'=>'required'
         ]);
 
-        $post= new Post;
-        $post->no_pendaftaran =$request ->input('nomorPendaftaran');
-        $post->nama_peserta =$request ->input('namaPeserta');
-        $post->alamat =$request ->input('alamatPeserta');
-        $post->save();
-        return redirect('/admin/siswa')->with('success','Post Created');
+        // $post = Post::updateOrCreate(['id' => $request->id], [
+        //           'nomor' => $request->no_pendaftaran,
+        //           'nama' => $request->nama_peserta,
+        //           'alamat' => $request->alamat,
+        //         ]);
+
+                
+        Alert::success('Berhasil', 'ditambahkan ke database');
+        // $postId = $request->id;
+        $post=Post::updateOrCreate(['id' => $request->id],['no_pendaftaran' => $request->nomor, 'nama_peserta' => $request->nama,'alamat'=>$request->alamat]);
+        // if(empty($request->id))
+        //     $msg = 'Customer entry created successfully.';
+        // else
+        //     $msg = 'Customer data is updated successfully';
         
+        return response()->json(['code'=>200, 'message'=>'Post Created successfully','data' => $post], 200);
+       
+        // return redirect()->route('siswa.index')->with('success',$msg);
+
 
     }
 
@@ -61,30 +65,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
-    }
+        $post = Post::find($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        return response()->json($post);
     }
 
     /**
@@ -95,6 +78,8 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $post = Post::find($id)->delete();
+
+      return response()->json(['success'=>'Post Deleted successfully']);
     }
 }
