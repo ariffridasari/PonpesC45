@@ -34,25 +34,10 @@ class PostController extends Controller
             'nama'=>'required',
             'alamat'=>'required'
         ]);
-
-        // $post = Post::updateOrCreate(['id' => $request->id], [
-        //           'nomor' => $request->no_pendaftaran,
-        //           'nama' => $request->nama_peserta,
-        //           'alamat' => $request->alamat,
-        //         ]);
-
                 
-        Alert::success('Berhasil', 'ditambahkan ke database');
-        // $postId = $request->id;
+        Alert::success('Berhasil !', 'Data berhasil tersimpan');
         $post=Post::updateOrCreate(['id' => $request->id],['no_pendaftaran' => $request->nomor, 'nama_peserta' => $request->nama,'alamat'=>$request->alamat]);
-        // if(empty($request->id))
-        //     $msg = 'Customer entry created successfully.';
-        // else
-        //     $msg = 'Customer data is updated successfully';
-        
-        return response()->json(['code'=>200, 'message'=>'Post Created successfully','data' => $post], 200);
-       
-        // return redirect()->route('siswa.index')->with('success',$msg);
+        return response()->json(['code'=>200,'data' => $post], 200);
 
 
     }
@@ -78,8 +63,8 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
+      Alert::success('Data Terhapus', 'Data berhasil terhapus');
       $post = Post::find($id)->delete();
-
       return response()->json(['success'=>'Post Deleted successfully']);
     }
 }

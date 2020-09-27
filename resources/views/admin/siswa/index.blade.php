@@ -13,30 +13,29 @@
                     <h2>Data Calon Siswa Baru</h2>
                 </div>
                 <div class="card-footer text-right">
-                    <a href="javascript:void(0)" class="btn btn-primary" data-toggle="modal" id="new-siswa" data-target="#AddModal">Add New</a>
+                    {{-- <a href="javascript:void(0)" class="btn btn-primary" data-toggle="modal" id="new-siswa" data-target="#AddModal">Add New</a> --}}
+                    <a href="javascript:void(0)" class="btn btn-primary" data-toggle="modal" id="new-siswa" onclick="addPost()">Add New</a>
                 </div>
                 <div class="card-body">
                     <div class="basic-data-table">
                         <table id="basic-data-table" class="table nowrap" style="width:100%">
                             <thead>
                                 <th>No</th>
-                                {{-- <th>ID</th> --}}
                                 <th>No. Pendaftaran</th>
-                                <th>Nama</th>
-                                <th>Alamat</th>
+                                <th style="width:10%">Nama</th>
+                                {{-- <th style="max-width: 10px">Alamat</th> --}}
                                 <th>Action</th>
                             </thead>
                             <tbody>
                                 @forelse ($posts as $key=>$post)
                                 <tr>
                                 <td>{{++$key}}</td>
-                                    {{-- <td>{{ $post->id}}</td> --}}
                                     <td>{{ $post->no_pendaftaran}}</td>
                                     <td>{{ $post->nama_peserta}}</td>
-                                    <td>{{ $post->alamat}}</td>
+                                    {{-- <td>{{ $post->alamat}}</td> --}}
                                     <td>
-                                        <a href="javascript:void(0)" data-id="{{ $post->id }}" onclick="editPost(event.target)" class="btn btn-info btn-sm">Edit</a></td>
-                   
+                                        <a href="javascript:void(0)" data-id="{{ $post->id }}" onclick="editPost(event.target)" class="btn btn-info btn-sm">Edit</a>
+                                        <a href="javascript:void(0)" data-id="{{ $post->id }}" onclick="deletePost(event.target)" class="btn btn-danger btn-sm" id="delete-confirm" >Delete</a>
                                     </td> 
                                 </tr>
                                 @empty
@@ -44,11 +43,6 @@
                                 @endforelse
                             </tbody>
                         </table>
-
-                       
-
-
-
                     </div>
                 </div>
             </div>
@@ -56,52 +50,59 @@
     </div>
 </div>
 
-
- {{-- Modal Edit --}}
- <div class="modal fade" id="EditSiswaModal" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade" id="EditSiswaModal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-notify modal-lg modal-right modal-success" role="document">
       <div class="modal-content">
           <div class="modal-header">
-              <h4 class="modal-title"></h4>
+              <h5 class="modal-title" id="exampleModalLabel">Edit Data Siswa</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
           </div>
           <div class="modal-body">
-              <form name="userForm" class="form-horizontal">
-                 <input type="hidden" name="id" id="id">
+          <form>
+              @csrf
+              <input type="hidden" class="form-control" id="id" name="id" >
                   <div class="form-group">
-                      <label for="nomor" >Nomor Pendaftaran</label>
-                      <div class="col-sm-12">
-                          <input type="text" class="form-control" id="nomor" name="nomor" placeholder="Enter title">
-                          <span id="nomorError" class="alert-message"></span>
-                      </div>
-                  </div>
+                      <label for="nomor">Nomor Pendaftaran</label>
+                      <input type="text" class="form-control" id="nomor" name="nomor" placeholder="Nomor Pendaftaran">
+                      <span id="nomorError" class="alert-message"></span>
+                    </div>
                   <div class="form-group">
-                      <label for="nama" class="col-sm-2">Nama</label>
-                      <div class="col-sm-12">
-                          <input type="text" class="form-control" id="nama" name="nama" placeholder="Enter title">
-                          <span id="namaError" class="alert-message"></span>
-                      </div>
-                  </div>
+                      <label for="nama">Nama Peserta</label>
+                      <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Peserta">
+                      <span id="namaError" class="alert-message"></span>
+                    </div>
                   <div class="form-group">
-                      <label class="col-sm-2">Alamat</label>
-                      <div class="col-sm-12">
-                          <textarea class="form-control" id="alamat" name="alamat" placeholder="Enter description" rows="4" cols="50">
-                          </textarea>
-                          <span id="alamatError" class="alert-message"></span>
-                      </div>
-                  </div>
-              </form>
+                      <label for="alamat">Alamat Peserta</label>
+                      <textarea class="form-control col-xs-12" rows="7" cols="50" id="alamat" name="alamat" placeholder="Alamat"></textarea>
+                      <span id="alamatError" class="alert-message"></span>
+                 </div>
           </div>
           <div class="modal-footer">
-              <button type="button" class="btn btn-primary" onclick="createPost()">Save</button>
+              <button type="button" class="btn btn-warning"
+                  data-dismiss="modal">Tutup</button>
+              <button type="submit" class="btn btn-primary" onclick="createPost()">Simpan</button>
           </div>
+          </form>
       </div>
-    </div>
   </div>
+</div>
+
 
   <script>
+      function addPost() {
+      $("#id").val('');
+      $("#exampleModalLabel").text('Tambah Data');
+      $('#EditSiswaModal').modal('show');
+    }
+
+
     function editPost(event) {
         var id  = $(event).data("id");
         let _url = `/admin/siswa/${id}`;
+        $("#exampleModalLabel").text('Update Data Siswa');
         $('#nomorError').text('');
         $('#namaError').text('');
         $('#alamatError').text('');
@@ -148,22 +149,40 @@
                   $("#row_"+id+" td:nth-child(2)").html(response.data.nomor);
                   $("#row_"+id+" td:nth-child(3)").html(response.data.nama);
                   $("#row_"+id+" td:nth-child(4)").html(response.data.alamat);
-                } else {
-                  $('table tbody').prepend(
-                  '<tr id="row_'+response.data.id+'"><td>'+response.data.id+'</td><td>'+response.data.nomor+'</td><td>'+response.data.nama+'</td><td>'+response.data.alamat+'</td><td><a href="javascript:void(0)" data-id="'+response.data.id+'</td><td><a href="javascript:void(0)" data-id="'+response.data.id+'" onclick="editPost(event.target)" class="btn btn-info">Edit</a></td><td><a href="javascript:void(0)" data-id="'+response.data.id+'" class="btn btn-danger" onclick="deletePost(event.target)">Delete</a></td></tr>');
-                }
+                  
+                } 
                 $('#nomor').val('');
                 $('#nama').val('');
                 $('#alamat').val('');
   
-                $('#EditSiswaModal').modal('hide').trigger("change");
-            
+                $('#EditSiswaModal').modal('hide');
+                // location.reload();
+                
               }
           },
           error: function(response) {
             $('#nomorError').text(response.responseJSON.errors.nomor);
             $('#namaError').text(response.responseJSON.errors.nama);
             $('#alamatError').text(response.responseJSON.errors.alamat);
+          }
+        });
+    }
+
+    
+    function deletePost(event) {
+      var id  = $(event).data("id");
+      let _url = `/admin/siswa/${id}`;
+      let _token   = $('meta[name="csrf-token"]').attr('content');
+  
+        $.ajax({
+          url: _url,
+          type: 'DELETE',
+          data: {
+            _token: _token
+          },
+          success: function(response) {
+            $("#row_"+id).remove();
+            location.reload(true);
           }
         });
     }
