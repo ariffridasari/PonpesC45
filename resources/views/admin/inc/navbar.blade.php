@@ -48,7 +48,7 @@
                             <ul class="collapse" id="app" data-parent="#sidebar-menu">
                                 <div class="sub-menu">
                                     <li>
-                                        <a class="sidenav-item-link" href="{{url('/admin/datasoal')}}">
+                                        <a class="sidenav-item-link" href="{{url('/admin/soal')}}">
                                             <span class="nav-text">Data Soal</span>
                                         </a>
                                     </li>
