@@ -63,5 +63,8 @@ class SoalController extends Controller
         Alert::success('Data Terhapus', 'Data berhasil terhapus');
         $soal = Soal::find($id)->delete();
         return response()->json(['success'=>'Soal Deleted successfully']);
+
+        // Soal::find($id)->delete();
+        // return back()->with('success','Post deleted successfully');
     }
 }
