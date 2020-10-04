@@ -154,24 +154,6 @@
         });
       }
 
-    //   function deleteSoal(event) {
-    //   var id  = $(event).data("id");
-    //   let _url = `/admin/soal/${id}`;
-    //   let _token   = $('meta[name="csrf-token"]').attr('content');
-  
-    //     $.ajax({
-    //       url: _url,
-    //       type: 'DELETE',
-    //       data: {
-    //         _token: _token
-    //       },
-    //       success: function(response) {
-    //         $("#row_"+id).remove();
-    //         location.reload(true);
-    //       }
-    //     });
-    // }
-
     function deleteSoal(event) {
       var id  = $(event).data("id");
       let _url = `/admin/soal/${id}`;

@@ -4,7 +4,8 @@ namespace App\Models\Admin;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Admin\Algoritma;
+use App\Models\Admin\DataSoal;
+
 
 
 class Jawaban extends Model
@@ -14,10 +15,10 @@ class Jawaban extends Model
     public $primaryKey ='id_jwb';
     // public $foregeinKey ='id_soal';
     public $timestamps ='true';
-    protected $fillable =['id_jwb','id_soal','kode','kunci'];
+    protected $fillable =['id_soal','kode','kunci'];
 
-    public function jawaban()
+    public function datasoal()
     {
-        return $this ->belongsTo(Algoritma::class,'id_soal','id_soal');
+        return $this->belongsTo(DataSoal::class,'id_soal');
     }
 }

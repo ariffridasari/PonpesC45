@@ -53,8 +53,8 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="sidenav-item-link" href="{{url('/admin/dataset')}}">
-                                            <span class="nav-text">Data Training</span>
+                                        <a class="sidenav-item-link" href="{{url('/admin/datasoal')}}">
+                                            <span class="nav-text">Data Soal Jawaban</span>
                                         </a>
                                     </li>
                                 </div>
