@@ -37,6 +37,7 @@
 
 
             <div class="content-wrapper">
+                @include('admin.inc.messages')
                 @yield('content')
             </div>
 

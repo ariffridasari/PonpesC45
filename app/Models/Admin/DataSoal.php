@@ -4,7 +4,6 @@ namespace App\Models\Admin;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Admin\Jawaban;
 
 class DataSoal extends Model
 {
@@ -13,7 +12,7 @@ class DataSoal extends Model
     public $timestamps ='true';
     protected $fillable =['soal'];
 
-    public function jawaban(){
-        return $this->hasMany(Jawaban::class,'id_soal');
+    public function answer(){
+        return $this->belongsTo('App\Models\Admin\Jawaban','id_soal');
     }
 }

@@ -4,21 +4,17 @@ namespace App\Models\Admin;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Admin\DataSoal;
-
-
 
 class Jawaban extends Model
 {
-    use HasFactory;
     protected $table  ='data_jawaban';
-    public $primaryKey ='id_jwb';
+    public $primaryKey ='id_soal';
     // public $foregeinKey ='id_soal';
     public $timestamps ='true';
     protected $fillable =['id_soal','kode','kunci'];
 
-    public function datasoal()
+    public function question()
     {
-        return $this->belongsTo(DataSoal::class,'id_soal');
+        return $this->hasMany('App\Models\Admin\DataSoal','id_soal');
     }
 }

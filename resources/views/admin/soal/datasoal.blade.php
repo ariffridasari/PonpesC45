@@ -72,19 +72,15 @@
                         <span id="soalError" class="alert-message"></span>
                     </div>
                     <div class="form-group">
+                        
                         <label for="jawaban">Jawaban :</label>
-
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="basic-addon1"><input id="kode" name="kode"></span>
-                            </div>
-                            <input type="text" class="form-control" placeholder="Jawaban" id="jwb" name="jwb" aria-label="Username" aria-describedby="basic-addon1">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1"><input id="kunci" name="kunci"></span>
-                              </div>
+                        
+                        <div class="input-group mb-3" id="jawaban">
+                            <ol id="output"></ol>
+                            <ol id="output2"></ol>
                         </div>
 
-                       
+
 
                         {{-- <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
@@ -208,7 +204,8 @@
     function showSoal(event) {
         var id_soal  = $(event).data("id");
         let _url = `/admin/datasoal/${id_soal}`;
-        var count = 4;
+        // var count = 4;
+        var text="";
         $("#exampleModalLabel").text('Show Data Soal');
         $('#soalError').text('');
         
@@ -216,7 +213,7 @@
           url: _url,
           type: "GET",
           success: function(response) {
-              if(response) {
+              if(response.datajwb.id_soal=response.soal.id_soal) {
                 $("#id_soal").val(response.soal.id_soal);
                 $("#soal").val(response.soal.soal);
                 // $("#jwb").val(response.jawaban);
@@ -228,18 +225,56 @@
                 // for (i = 0; i <= count; i++) {
                     
                 // }
+                
+
+            //     $.each( response.datajwb, function( key, value ) {
+            //         $("#judul").val(response.datajwb.id_soal);
+            //     console.log("key => "+response.datajwb.jawaban);
+            //     // console.log("key => "+key +" Value : "+value);
+
+            //     // $.each( value, function( ky, val ) {                    
+            //     // $("#judul").append(val+"<br/>");
+            //     //     console.log('val => ',''+val);//will output: name, firstname, societe
+            //     //     console.log('Key => '+ky);//will output: name1, fname1, soc1
+            //     // });
+
+
+            //     //arr.push( value );    
+            //     // console.log("key => "+key +" Value : "+value);//will output: 04c85ccab52880 and all such
+            //     // 
+            //     // $.each( value, function( i, v ) {
+            //     //     $("ol").append(" "+val);
+            //     //     // text += "jawaban" + ky + val "<br/>";
+                    
+            //     //     console.log('val => ',''+val);//will output: name, firstname, societe
+            //     //     // console.log('val => '+val);//will output: name1, fname1, soc1
+            //     // });  
+                
+            // });
 
 
 
-            //   $("#id_soal").val(response.$datajwb->id_soal);
-            // //   $("#soal").val(response.soal);
-            // //   $("#a").val(response.id_jwb);
+            // var data = $.parseJSON(response.datajwb);
+                $(response.datajwb).each(function(i,val){    
+                    $.each(val,function(k,v){
+                    $("#output").append($("<li>").append(v));    
+                        console.log(k+" : "+ v);   
+                });
+                });
+
+                // $(response.datajwb).each(function(i, item){
+                //     $("#output").append($("<li>").append(item));
+                // });
+
+
               $('#ModalSoal').modal('show');
               }
+              
           }
         });
       }
  
+    //   document.getElementById("demo").innerHTML = text;  
 
 </script>
 

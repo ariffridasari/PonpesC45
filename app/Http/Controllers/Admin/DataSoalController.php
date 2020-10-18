@@ -66,7 +66,8 @@ class DataSoalController extends Controller
         $soal = DataSoal::find($id);
         $datajwb = DB::table('data_soal')
         ->join('data_jawaban', 'data_soal.id_soal', '=', 'data_jawaban.id_soal')
-        ->select('data_jawaban.*')
+        ->select('data_jawaban.jawaban')
+        // ->select('data_jawaban.id_soal','data_jawaban.id_jwb','data_jawaban.jawaban')
         ->where('data_soal.id_soal',$id)
         // ->where('data_jawaban.id_jwb',$id)
         ->get();

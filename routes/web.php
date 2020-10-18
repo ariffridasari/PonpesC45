@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\SoalController;
 use App\Http\Controllers\Admin\DataSoalController;
+use App\Http\Controllers\Admin\QuestionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,8 @@ Route::group(
     }
 );
 Route::resource('admin/siswa',PostController::class);
-Route::resource('admin/soal',SoalController::class);
-Route::resource('admin/datasoal',DataSoalController::class);
+// Route::resource('admin/soal',SoalController::class);
+// Route::resource('admin/datasoal',DataSoalController::class);
+Route::resource('admin/question',QuestionController::class);
 
 
