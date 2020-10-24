@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\SoalController;
 use App\Http\Controllers\Admin\DataSoalController;
 use App\Http\Controllers\Admin\QuestionController;
+use App\Http\Controllers\Admin\AnswerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,9 +26,10 @@ Route::group(
         // Route::get('datasoal',[AlgoritmaController::class, 'index']);
     }
 );
-Route::resource('admin/siswa',PostController::class);
+// Route::resource('admin/siswa',PostController::class);
 // Route::resource('admin/soal',SoalController::class);
 // Route::resource('admin/datasoal',DataSoalController::class);
 Route::resource('admin/question',QuestionController::class);
+Route::resource('admin/answer',AnswerController::class);
 
 

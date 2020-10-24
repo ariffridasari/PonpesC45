@@ -74,7 +74,7 @@
                     <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                         <img src="{{ URL::asset('admin/assets/img/user/user.png')}}" class="user-image"
                             alt="User Image" />
-                        <span class="d-none d-lg-inline-block">Abdus Salam</span>
+                        <span class="d-none d-lg-inline-block">Arif Fridasari</span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <!-- User image -->

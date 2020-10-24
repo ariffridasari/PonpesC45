@@ -62,9 +62,20 @@ class QuestionController extends Controller
     public function show($id)
     {
         $datasoal=Datasoal::find($id);
-        $jawaban=Jawaban::find($id);
+        // $jawaban=Jawaban::find($id);
+
+ 
+        $datajwb = DB::table('data_soal')
+        ->join('data_jawaban', 'data_soal.id_soal', '=', 'data_jawaban.id_soal')
+        // ->select('data_jawaban.jawaban')
+        ->select('data_jawaban.jawaban','data_jawaban.kunci')
+        ->where('data_soal.id_soal',$id)
+        ->orderBy('data_jawaban.kunci','desc')
+        // ->where('data_jawaban.id_jwb',$id)
+        ->get();
+
         
-        return view('admin.question.showqst')->with('datasoal',$datasoal);
+        return view('admin.question.showqst')->with('datasoal',$datasoal)->with('datajwb',$datajwb);
 
     }
 
@@ -83,19 +94,22 @@ class QuestionController extends Controller
         $datajwb = DB::table('data_soal')
         ->join('data_jawaban', 'data_soal.id_soal', '=', 'data_jawaban.id_soal')
         // ->select('data_jawaban.jawaban')
-        ->select('data_jawaban.id_soal','data_jawaban.id_jwb','data_jawaban.jawaban','data_soal.soal')
-        // ->where('data_soal.id_soal',$id)
-        // ->where('data_jawaban.id_jwb',$id)
+        ->select('data_jawaban.id_jwb','data_jawaban.jawaban','data_jawaban.kunci')
+        ->where('data_jawaban.id_soal',$id)
+        ->orderBy('data_jawaban.kunci','desc')
         ->get();
 
-        $select = [];
-        foreach($datajwb as $dtsoal){
-            $select[$dtsoal->id_jwb] = $dtsoal->jawaban;
-        }
+        // $selecta=[];
+        // $selectb=[];
+        // foreach($datajwb as $dtsoal){
+        //     $selecta[$dtsoal->id_jwb] = $dtsoal->jawaban, $dtsoal->kunci;
+        // }
        
-        // return $select;
+        // return $datajwb;
         // return $datasoal->answer;
-        return view('admin.question.editqst')->with('datasoal',$datasoal)->with('select',$select);
+        return view('admin.question.editqst')->with('datasoal',$datasoal)->with('datajwb',$datajwb);
+        
+        // ->with('selectb',$selectb);
     }
 
     /**
@@ -114,9 +128,11 @@ class QuestionController extends Controller
         $datasoal= Datasoal::find($id);
         $datasoal->soal =$request ->input('question');
         $datasoal->save();
+
         Alert::success('Berhasil !', 'Data berhasil diperbarui');
         return redirect('admin/question');
     }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -126,9 +142,9 @@ class QuestionController extends Controller
      */
     public function destroy($id)
     {
-        $datasoal= Datasoal::find($id);
-        $datasoal->delete();
-        Alert::success('Berhasil !', 'Data berhasil dihapus');
-        return redirect('admin/question');
+        // $datasoal= Datasoal::find($id);
+        // $datasoal->delete();
+        // Alert::success('Berhasil !', 'Data berhasil dihapus');
+        // return redirect('admin/question');
     }
 }

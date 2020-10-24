@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Jawaban extends Model
 {
     protected $table  ='data_jawaban';
-    public $primaryKey ='id_soal';
+    public $primaryKey ='id_jwb';
     // public $foregeinKey ='id_soal';
     public $timestamps ='true';
-    protected $fillable =['id_soal','kode','kunci'];
+    // protected $fillable =['id_soal','kode','kunci'];
 
     public function question()
     {

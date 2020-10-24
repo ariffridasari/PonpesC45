@@ -6,13 +6,13 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card card-default">
+                <div class="card-footer text-right">
+                    <a href="/admin/question/create" class="btn btn-primary"><i class="mdi mdi-plus mr-1"></i>Add New</a>
+                    {{-- <a href="javascript:void(0)" class="btn btn-primary" data-toggle="modal" id="new-siswa" onclick="addPost()">Add New</a> --}}
+                </div>
                 <div class="card-header card-header-border-bottom">
                     <h2>Data Soal</h2>
                 </div>
-                {{-- <div class="card-footer text-right"> --}}
-                    {{-- <a href="javascript:void(0)" class="btn btn-primary" data-toggle="modal" id="new-siswa" data-target="#AddModal">Add New</a> --}}
-                    {{-- <a href="javascript:void(0)" class="btn btn-primary" data-toggle="modal" id="new-siswa" onclick="addPost()">Add New</a> --}}
-                {{-- </div> --}}
                 <div class="card-body">
                     <div class="basic-data-table">
                         <table id="basic-data-table" class="table nowrap" style="width:100%">

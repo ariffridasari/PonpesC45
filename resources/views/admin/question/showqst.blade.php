@@ -12,6 +12,28 @@
                 <div class="card-header card-header-border-bottom">
                     <h2>{{$datasoal->soal}}</h2>
                 </div>
+                <div class="card-body">
+                <div class="form-group">
+                    {{Form::label('answer','Answer :')}}
+                    {{-- {!! Form::select('datajwb', $select, null, ['class'=>'form-control']) !!} --}}
+                    @forelse($datajwb as $dtsoal)
+                    <div class="form-group">
+                        <div class="input-group-prepend">
+                            @if ($dtsoal->kunci =='1')
+                            {{Form::text('answer',$dtsoal->jawaban,['class'=>'form-control bg-success text-dark','placeholder'=>'answer','readonly'])}}
+                            @else
+                            {{Form::text('answer',$dtsoal->jawaban,['class'=>'form-control bg-light text-dark','placeholder'=>'answer','readonly'])}}
+                            {{-- <div class="input-group-text">Null</div> --}}
+                            @endif
+                            
+                          </div>
+                    </div>
+                    @empty
+                        <br>
+                        <td colspan="5">Jawaban Belum dibuat !</td>
+                    @endforelse 
+                </div>
+                </div>
             </div>
         </div>
     </div>

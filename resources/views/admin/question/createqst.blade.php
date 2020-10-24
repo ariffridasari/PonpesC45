@@ -7,7 +7,7 @@
         <div class="col-lg-12">
             <div class="card card-default">
                 <div class="card-footer text-right">
-                <a href="/admin/question/question" class="mb-1 btn btn-primary"><i class="mdi mdi-keyboard-backspace mr-1"></i> Back</a>
+                <a href="/admin/question" class="mb-1 btn btn-primary"><i class="mdi mdi-keyboard-backspace mr-1"></i> Back</a>
                 </div>
                 <div class="card-header card-header-border-bottom">
                     <h2>Create Question</h2>
@@ -31,7 +31,7 @@
                     <div class="form-group">
                         {{Form::text('d','',['class'=>'form-control','placeholder'=>'D'])}}
                     </div>
-                    {{Form::submit('Submit',['class'=>'btn btn-primary'])}}
+                    {{Form::submit('Add Question',['class'=>'btn btn-primary'])}}
                 {!! Form::close() !!} 
                 </div>
             </div>
